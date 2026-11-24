@@ -1,0 +1,1480 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>玩物社区套路 | 玩物社区官方网站 - 原创高清视频内容生态</title>
+<meta name="description" content="玩物社区套路是玩物社区官方网站，深耕兴趣玩物垂直领域，汇聚原创高清视频、创作者访谈与社区活动，为玩物爱好者构建值得信赖的企业级内容生态平台。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111827'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%2322d3ee' stroke-width='4'/%3E%3Cpolygon points='28,24 28,40 42,32' fill='%2322d3ee'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --wq-ink:#0e1420;
+    --wq-ink-2:#151d2c;
+    --wq-panel:#1b2435;
+    --wq-line:rgba(255,255,255,.09);
+    --wq-text:#e7edf6;
+    --wq-muted:#94a3b8;
+    --wq-neon:#22d3ee;
+    --wq-neon-2:#7c5cff;
+    --wq-lime:#a3e635;
+    --wq-radius:16px;
+    --wq-stick:118px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:var(--wq-stick);}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 500px at 82% -8%, rgba(124,92,255,.20), transparent 60%),
+      radial-gradient(900px 420px at 6% 4%, rgba(34,211,238,.14), transparent 62%),
+      var(--wq-ink);
+    color:var(--wq-text);
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,"Segoe UI",sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  h1,h2,h3,h4{margin:0;line-height:1.3;letter-spacing:.01em;}
+  p{margin:0;}
+  ul,ol{margin:0;padding:0;list-style:none;}
+
+  .wq-wrap{width:min(1180px,calc(100% - 40px));margin-inline:auto;}
+  .wq-skip{position:absolute;left:-9999px;top:0;background:var(--wq-neon);color:#051018;padding:10px 16px;border-radius:0 0 10px 0;z-index:99;}
+  .wq-skip:focus{left:0;}
+
+  /* ---------- 吸顶：公告条 + 页头 ---------- */
+  .wq-sticky-head{
+    position:sticky;top:0;z-index:60;
+    backdrop-filter:blur(14px);
+    background:linear-gradient(180deg,rgba(14,20,32,.97),rgba(14,20,32,.90));
+    border-bottom:1px solid var(--wq-line);
+  }
+  .wq-notice{
+    background:linear-gradient(90deg,rgba(34,211,238,.16),rgba(124,92,255,.18));
+    border-bottom:1px solid rgba(34,211,238,.22);
+    font-size:13.5px;
+  }
+  .wq-notice-inner{display:flex;align-items:center;gap:12px;padding:8px 0;flex-wrap:wrap;}
+  .wq-notice-tag{
+    flex:none;font-size:11.5px;font-weight:700;letter-spacing:.14em;
+    color:#051018;background:var(--wq-neon);border-radius:999px;padding:2px 10px;
+  }
+  .wq-notice-list{display:flex;gap:22px;overflow:hidden;}
+  .wq-notice-list li{color:#dbe7f5;white-space:nowrap;}
+  .wq-notice-list li b{color:var(--wq-lime);font-weight:600;}
+  .wq-notice-list li a{color:var(--wq-neon);border-bottom:1px dashed rgba(34,211,238,.5);}
+  @media (max-width:900px){
+    .wq-notice-list li:nth-child(n+2){display:none;}
+    .wq-notice-list{overflow:visible;}
+    .wq-notice-list li{white-space:normal;}
+  }
+
+  .wq-header-inner{display:flex;align-items:center;gap:22px;padding:14px 0;}
+  .wq-brand{display:flex;align-items:center;gap:11px;flex:none;}
+  .wq-brand-mark{
+    width:40px;height:40px;border-radius:12px;flex:none;
+    background:conic-gradient(from 210deg,var(--wq-neon),var(--wq-neon-2),var(--wq-neon));
+    display:grid;place-items:center;color:#051018;font-weight:800;font-size:17px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.14),0 8px 22px rgba(34,211,238,.22);
+  }
+  .wq-brand-name{font-size:18px;font-weight:800;letter-spacing:.06em;}
+  .wq-brand-sub{font-size:11px;letter-spacing:.26em;color:var(--wq-muted);text-transform:uppercase;}
+
+  .wq-nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;}
+  .wq-nav a{
+    font-size:14px;color:#c3cfdf;padding:8px 12px;border-radius:9px;
+    transition:background .18s,color .18s;
+  }
+  .wq-nav a:hover,.wq-nav a:focus-visible{background:rgba(34,211,238,.14);color:#fff;outline:none;}
+
+  .wq-search{display:flex;align-items:center;gap:8px;flex:none;}
+  .wq-search-input{
+    width:196px;background:rgba(255,255,255,.06);border:1px solid var(--wq-line);
+    border-radius:10px;padding:9px 12px;color:var(--wq-text);font-size:13.5px;
+    transition:border-color .18s,box-shadow .18s;
+  }
+  .wq-search-input::placeholder{color:#7d8aa0;}
+  .wq-search-input:focus{outline:none;border-color:rgba(34,211,238,.7);box-shadow:0 0 0 3px rgba(34,211,238,.16);}
+  .wq-search-btn{
+    border:1px solid rgba(34,211,238,.4);background:rgba(34,211,238,.14);color:var(--wq-neon);
+    border-radius:10px;padding:9px 14px;font-size:13.5px;font-weight:600;transition:background .18s;
+  }
+  .wq-search-btn:hover{background:rgba(34,211,238,.26);}
+  .wq-search-hint{
+    position:absolute;font-size:13px;color:var(--wq-neon);margin-top:4px;
+  }
+  .wq-search-zone{position:relative;}
+  .wq-search-msg{
+    grid-column:1/-1;font-size:13.5px;color:var(--wq-lime);
+    display:none;padding:8px 12px;border-radius:10px;background:rgba(163,230,53,.1);
+    border:1px solid rgba(163,230,53,.28);
+  }
+  .wq-search-msg.is-on{display:block;}
+
+  .wq-burger{
+    display:none;margin-left:auto;flex:none;
+    background:rgba(255,255,255,.06);border:1px solid var(--wq-line);color:var(--wq-text);
+    border-radius:10px;padding:9px 12px;font-size:16px;line-height:1;
+  }
+  .wq-mobile-panel{display:none;border-top:1px solid var(--wq-line);padding:12px 0 16px;}
+  .wq-mobile-panel.is-open{display:block;}
+  .wq-mobile-panel a{
+    display:block;padding:10px 12px;border-radius:9px;font-size:14.5px;color:#cdd8e6;
+  }
+  .wq-mobile-panel a:hover{background:rgba(34,211,238,.13);}
+  .wq-mobile-search{display:flex;gap:8px;padding:6px 4px 10px;}
+  .wq-mobile-search input{
+    flex:1;min-width:0;background:rgba(255,255,255,.06);border:1px solid var(--wq-line);
+    border-radius:10px;padding:9px 12px;color:var(--wq-text);font-size:13.5px;
+  }
+  .wq-mobile-search input:focus{outline:none;border-color:rgba(34,211,238,.7);}
+
+  @media (max-width:1080px){
+    .wq-search-input{width:150px;}
+  }
+  @media (max-width:960px){
+    .wq-nav,.wq-search{display:none;}
+    .wq-burger{display:block;}
+  }
+
+  /* ---------- 首屏 ---------- */
+  .wq-hero{padding:56px 0 40px;position:relative;overflow:hidden;}
+  .wq-hero::after{
+    content:"";position:absolute;inset:auto -140px -180px auto;width:520px;height:520px;
+    background:radial-gradient(circle,rgba(124,92,255,.24),transparent 68%);pointer-events:none;
+  }
+  .wq-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:44px;align-items:center;}
+  .wq-eyebrow{
+    display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.2em;
+    color:var(--wq-neon);border:1px solid rgba(34,211,238,.32);background:rgba(34,211,238,.09);
+    padding:5px 13px;border-radius:999px;margin-bottom:20px;text-transform:uppercase;
+  }
+  .wq-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--wq-lime);display:inline-block;}
+  .wq-hero h1{font-size:clamp(34px,4.6vw,58px);font-weight:800;letter-spacing:.02em;}
+  .wq-hero h1 em{
+    font-style:normal;
+    background:linear-gradient(96deg,var(--wq-neon),var(--wq-neon-2) 62%,var(--wq-lime));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .wq-hero-lead{margin-top:18px;font-size:16.5px;color:#c4d0e0;max-width:56ch;}
+  .wq-hero-desc{margin-top:14px;font-size:14.5px;color:var(--wq-muted);max-width:58ch;}
+  .wq-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;}
+  .wq-btn{
+    display:inline-flex;align-items:center;gap:8px;border-radius:11px;padding:12px 22px;
+    font-size:14.5px;font-weight:600;border:1px solid transparent;transition:transform .16s,box-shadow .16s,background .16s;
+  }
+  .wq-btn:hover{transform:translateY(-2px);}
+  .wq-btn-primary{background:linear-gradient(93deg,var(--wq-neon),var(--wq-neon-2));color:#04121b;box-shadow:0 10px 26px rgba(34,211,238,.28);}
+  .wq-btn-ghost{border-color:rgba(255,255,255,.2);color:var(--wq-text);background:rgba(255,255,255,.04);}
+  .wq-btn-ghost:hover{background:rgba(255,255,255,.1);}
+
+  .wq-hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:34px;}
+  .wq-stat{
+    background:rgba(255,255,255,.045);border:1px solid var(--wq-line);
+    border-radius:13px;padding:14px 15px;min-width:0;
+  }
+  .wq-stat b{display:block;font-size:23px;font-weight:800;color:#fff;letter-spacing:.02em;}
+  .wq-stat span{font-size:12.5px;color:var(--wq-muted);}
+
+  .wq-hero-visual{position:relative;min-width:0;}
+  .wq-hero-visual figure{margin:0;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 26px 60px rgba(0,0,0,.45);}
+  .wq-hero-visual img{width:100%;height:auto;aspect-ratio:16/11;object-fit:cover;}
+  .wq-hero-badge{
+    position:absolute;left:-10px;bottom:26px;background:rgba(11,17,27,.92);
+    border:1px solid rgba(34,211,238,.35);border-radius:13px;padding:11px 16px;
+    font-size:13px;color:#d5e2f0;box-shadow:0 14px 34px rgba(0,0,0,.5);backdrop-filter:blur(8px);
+  }
+  .wq-hero-badge b{color:var(--wq-neon);font-size:15px;}
+  .wq-hero-float{
+    position:absolute;right:-8px;top:-16px;background:rgba(124,92,255,.92);color:#fff;
+    border-radius:11px;padding:8px 14px;font-size:12.5px;font-weight:600;letter-spacing:.05em;
+    box-shadow:0 12px 28px rgba(124,92,255,.34);
+  }
+  @media (max-width:900px){
+    .wq-hero-grid{grid-template-columns:minmax(0,1fr);gap:30px;}
+    .wq-hero-float{right:8px;top:8px;}
+    .wq-hero-badge{left:8px;bottom:8px;position:static;margin-top:12px;display:inline-block;}
+  }
+  @media (max-width:520px){
+    .wq-hero-stats{grid-template-columns:minmax(0,1fr);}
+  }
+
+  /* ---------- 通用 section ---------- */
+  .wq-section{padding:52px 0;}
+  .wq-section + .wq-section{border-top:1px solid rgba(255,255,255,.055);}
+  .wq-sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap;}
+  .wq-sec-kicker{font-size:12px;letter-spacing:.24em;color:var(--wq-neon);text-transform:uppercase;margin-bottom:8px;}
+  .wq-sec-head h2{font-size:clamp(23px,2.5vw,31px);font-weight:800;}
+  .wq-sec-head p{color:var(--wq-muted);font-size:14px;max-width:56ch;margin-top:8px;}
+  .wq-sec-more{font-size:13.5px;color:var(--wq-neon);border-bottom:1px dashed rgba(34,211,238,.45);padding-bottom:2px;flex:none;}
+
+  /* ---------- 深度解析 ---------- */
+  .wq-analyze{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.72fr);gap:34px;align-items:start;}
+  .wq-analyze-main h3{font-size:18px;margin:24px 0 10px;color:#fff;}
+  .wq-analyze-main h3:first-child{margin-top:0;}
+  .wq-analyze-main p{font-size:14.8px;color:#bcc9d9;margin-bottom:12px;}
+  .wq-analyze-main p strong{color:var(--wq-neon);font-weight:600;}
+  .wq-analyze-side{display:grid;gap:16px;position:sticky;top:calc(var(--wq-stick) + 18px);}
+  .wq-side-card{
+    background:linear-gradient(160deg,rgba(34,211,238,.10),rgba(124,92,255,.10));
+    border:1px solid var(--wq-line);border-radius:var(--wq-radius);padding:18px 20px;
+  }
+  .wq-side-card h4{font-size:15px;color:#fff;margin-bottom:8px;}
+  .wq-side-card p{font-size:13.5px;color:var(--wq-muted);}
+  .wq-side-list{margin-top:10px;display:grid;gap:9px;}
+  .wq-side-list li{display:flex;gap:9px;font-size:13.5px;color:#c6d3e2;}
+  .wq-side-list li::before{content:"◆";color:var(--wq-lime);font-size:10px;line-height:1.9;flex:none;}
+  @media (max-width:900px){
+    .wq-analyze{grid-template-columns:minmax(0,1fr);}
+    .wq-analyze-side{position:static;}
+  }
+
+  /* ---------- 焦点内容 ---------- */
+  .wq-focus-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:26px;}
+  .wq-focus-main{min-width:0;}
+  .wq-cover{
+    position:relative;border-radius:var(--wq-radius);overflow:hidden;
+    border:1px solid rgba(255,255,255,.13);box-shadow:0 18px 44px rgba(0,0,0,.4);
+  }
+  .wq-cover img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+  .wq-cover-tag{
+    position:absolute;left:12px;top:12px;background:rgba(5,16,24,.82);border:1px solid rgba(34,211,238,.45);
+    color:var(--wq-neon);font-size:11.5px;letter-spacing:.1em;padding:3px 10px;border-radius:999px;
+  }
+  .wq-cover-play{
+    position:absolute;right:12px;bottom:12px;background:rgba(5,16,24,.8);
+    border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 12px;
+    font-size:12px;color:#e7edf6;display:flex;align-items:center;gap:6px;
+  }
+  .wq-cover-play i{width:0;height:0;border-left:8px solid var(--wq-lime);border-top:5px solid transparent;border-bottom:5px solid transparent;display:inline-block;}
+  .wq-focus-main h3{font-size:20px;margin:16px 0 8px;}
+  .wq-focus-main p{font-size:14.5px;color:#b8c6d7;}
+  .wq-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--wq-muted);margin-top:10px;}
+  .wq-meta span{display:inline-flex;align-items:center;gap:5px;}
+
+  .wq-focus-list{display:grid;gap:12px;min-width:0;}
+  .wq-focus-item{
+    display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start;
+    background:rgba(255,255,255,.04);border:1px solid var(--wq-line);border-radius:13px;padding:14px 16px;
+    transition:transform .18s,border-color .18s,background .18s;
+  }
+  .wq-focus-item:hover{transform:translateX(4px);border-color:rgba(34,211,238,.38);background:rgba(34,211,238,.07);}
+  .wq-focus-no{font-size:22px;font-weight:800;color:rgba(34,211,238,.55);line-height:1.1;font-variant-numeric:tabular-nums;}
+  .wq-focus-item h4{font-size:15.5px;color:#fff;margin-bottom:5px;}
+  .wq-focus-item p{font-size:13px;color:var(--wq-muted);}
+  @media (max-width:860px){
+    .wq-focus-grid{grid-template-columns:minmax(0,1fr);}
+  }
+
+  /* ---------- 视频列表 ---------- */
+  .wq-video-list{display:grid;gap:14px;}
+  .wq-video-row{
+    display:grid;grid-template-columns:190px minmax(0,1fr) auto;gap:20px;align-items:center;
+    background:linear-gradient(120deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+    border:1px solid var(--wq-line);border-radius:var(--wq-radius);padding:14px;
+    transition:border-color .18s,transform .18s;
+  }
+  .wq-video-row:hover{border-color:rgba(34,211,238,.4);transform:translateY(-2px);}
+  .wq-video-thumb{min-width:0;border-radius:11px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.1);}
+  .wq-video-thumb img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+  .wq-video-thumb .wq-dur{
+    position:absolute;right:6px;bottom:6px;background:rgba(5,16,24,.85);color:#dbe7f5;
+    font-size:11px;padding:1px 7px;border-radius:6px;
+  }
+  .wq-video-body{min-width:0;}
+  .wq-video-body h3{font-size:16.5px;margin-bottom:7px;}
+  .wq-video-body p{font-size:13.5px;color:var(--wq-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .wq-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;}
+  .wq-tag{
+    font-size:11.5px;color:#9fe9f5;background:rgba(34,211,238,.1);
+    border:1px solid rgba(34,211,238,.26);border-radius:999px;padding:1px 9px;
+  }
+  .wq-tag.is-alt{color:#c9b9ff;background:rgba(124,92,255,.12);border-color:rgba(124,92,255,.3);}
+  .wq-video-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end;min-width:112px;}
+  .wq-like-btn,.wq-fav-btn{
+    display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);
+    border:1px solid var(--wq-line);color:#cdd8e6;border-radius:9px;padding:6px 11px;
+    font-size:12.5px;transition:background .16s,border-color .16s,color .16s;white-space:nowrap;
+  }
+  .wq-like-btn:hover,.wq-fav-btn:hover{background:rgba(34,211,238,.14);border-color:rgba(34,211,238,.4);}
+  .wq-like-btn.is-liked{color:var(--wq-lime);border-color:rgba(163,230,53,.45);background:rgba(163,230,53,.1);}
+  .wq-fav-btn.is-fav{color:#ff8fb1;border-color:rgba(255,143,177,.45);background:rgba(255,143,177,.1);}
+  .wq-video-author{font-size:12px;color:var(--wq-muted);white-space:nowrap;}
+  @media (max-width:820px){
+    .wq-video-row{grid-template-columns:minmax(0,1fr);gap:14px;}
+    .wq-video-actions{flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:wrap;}
+  }
+
+  /* ---------- 专题 ---------- */
+  .wq-topic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;}
+  .wq-topic{
+    background:linear-gradient(170deg,rgba(124,92,255,.13),rgba(255,255,255,.03));
+    border:1px solid var(--wq-line);border-radius:var(--wq-radius);padding:20px;
+    display:flex;flex-direction:column;gap:12px;transition:border-color .18s,transform .18s;
+  }
+  .wq-topic:hover{border-color:rgba(124,92,255,.5);transform:translateY(-3px);}
+  .wq-topic-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;}
+  .wq-topic h3{font-size:17px;}
+  .wq-topic-status{
+    flex:none;font-size:11.5px;padding:2px 9px;border-radius:999px;
+    border:1px solid rgba(163,230,53,.4);color:var(--wq-lime);background:rgba(163,230,53,.1);
+  }
+  .wq-topic-status.is-plan{border-color:rgba(148,163,184,.4);color:#b8c6d7;background:rgba(148,163,184,.1);}
+  .wq-topic p{font-size:13.5px;color:var(--wq-muted);}
+  .wq-topic ul{display:grid;gap:8px;margin-top:2px;}
+  .wq-topic ul li{font-size:13.5px;color:#c6d3e2;display:flex;gap:8px;}
+  .wq-topic ul li::before{content:"›";color:var(--wq-neon);font-weight:800;flex:none;}
+
+  /* ---------- 创作者 ---------- */
+  .wq-author-duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:18px;}
+  .wq-author-card{
+    display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start;
+    background:rgba(255,255,255,.045);border:1px solid var(--wq-line);border-radius:var(--wq-radius);
+    padding:18px;transition:border-color .18s,background .18s;
+  }
+  .wq-author-card:hover{border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.06);}
+  .wq-avatar{
+    width:52px;height:52px;border-radius:14px;display:grid;place-items:center;flex:none;
+    font-size:19px;font-weight:800;color:#04121b;
+  }
+  .wq-avatar.a1{background:linear-gradient(140deg,#22d3ee,#7c5cff);}
+  .wq-avatar.a2{background:linear-gradient(140deg,#a3e635,#22d3ee);}
+  .wq-avatar.a3{background:linear-gradient(140deg,#ff8fb1,#7c5cff);}
+  .wq-avatar.a4{background:linear-gradient(140deg,#fbbf24,#ff8fb1);}
+  .wq-avatar.a5{background:linear-gradient(140deg,#38bdf8,#a3e635);}
+  .wq-avatar.a6{background:linear-gradient(140deg,#c084fc,#38bdf8);}
+  .wq-author-card h3{font-size:16px;margin-bottom:3px;}
+  .wq-author-role{font-size:12.5px;color:var(--wq-neon);margin-bottom:8px;}
+  .wq-author-card p{font-size:13px;color:var(--wq-muted);}
+  .wq-author-nums{display:flex;gap:16px;margin-top:10px;font-size:12px;color:#9fb0c6;}
+  .wq-author-nums b{color:#fff;font-weight:700;}
+  .wq-author-more{
+    background:none;border:none;color:var(--wq-neon);font-size:12.5px;padding:0;margin-top:8px;
+    border-bottom:1px dashed rgba(34,211,238,.45);
+  }
+
+  /* ---------- 数据榜单 ---------- */
+  .wq-rank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;}
+  .wq-rank-col{background:rgba(255,255,255,.04);border:1px solid var(--wq-line);border-radius:var(--wq-radius);padding:18px 20px;}
+  .wq-rank-col h3{font-size:16px;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .wq-rank-col h3::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(var(--wq-neon),var(--wq-neon-2));}
+  .wq-rank-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:11px;align-items:center;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.08);}
+  .wq-rank-item:last-child{border-bottom:none;}
+  .wq-rank-num{font-size:14px;font-weight:800;color:rgba(148,163,184,.9);width:20px;text-align:center;font-variant-numeric:tabular-nums;}
+  .wq-rank-item.top .wq-rank-num{color:var(--wq-lime);}
+  .wq-rank-title{font-size:13.8px;color:#dbe7f5;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .wq-rank-score{font-size:12px;color:var(--wq-muted);white-space:nowrap;}
+
+  /* ---------- 评论 ---------- */
+  .wq-comment-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+  .wq-comment{
+    background:rgba(255,255,255,.04);border:1px solid var(--wq-line);border-radius:13px;padding:16px 18px;
+    display:flex;flex-direction:column;gap:9px;min-width:0;
+  }
+  .wq-comment-head{display:flex;align-items:center;gap:10px;}
+  .wq-comment-avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:#04121b;flex:none;}
+  .wq-comment-head b{font-size:13.5px;color:#e7edf6;}
+  .wq-comment-head span{font-size:11.5px;color:var(--wq-muted);margin-left:auto;}
+  .wq-comment p{font-size:13.6px;color:#bcc9d9;}
+  .wq-comment-mark{color:var(--wq-neon);font-size:12px;font-style:normal;}
+  @media (max-width:760px){
+    .wq-comment-two{grid-template-columns:minmax(0,1fr);}
+  }
+
+  /* ---------- 动态 & FAQ ---------- */
+  .wq-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:34px;align-items:start;}
+  .wq-dyn{display:grid;gap:0;}
+  .wq-dyn-item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;padding:14px 0;border-bottom:1px dashed rgba(255,255,255,.1);}
+  .wq-dyn-item:last-child{border-bottom:none;}
+  .wq-dyn-date{font-size:12px;color:var(--wq-neon);font-variant-numeric:tabular-nums;letter-spacing:.03em;white-space:nowrap;padding-top:2px;}
+  .wq-dyn-item h3{font-size:14.8px;margin-bottom:4px;}
+  .wq-dyn-item p{font-size:13px;color:var(--wq-muted);}
+  .wq-faq{display:grid;gap:10px;}
+  .wq-faq details{
+    background:rgba(255,255,255,.04);border:1px solid var(--wq-line);border-radius:12px;
+    padding:13px 16px;transition:border-color .18s;
+  }
+  .wq-faq details[open]{border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.06);}
+  .wq-faq summary{
+    cursor:pointer;font-size:14.2px;color:#e7edf6;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;
+  }
+  .wq-faq summary::-webkit-details-marker{display:none;}
+  .wq-faq summary::after{content:"+";color:var(--wq-neon);font-size:18px;line-height:1;flex:none;}
+  .wq-faq details[open] summary::after{content:"−";}
+  .wq-faq p{font-size:13.3px;color:var(--wq-muted);margin-top:9px;}
+  @media (max-width:860px){
+    .wq-split{grid-template-columns:minmax(0,1fr);gap:26px;}
+  }
+
+  /* ---------- 合作墙 ---------- */
+  .wq-partners{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
+  .wq-partner{
+    border:1px solid var(--wq-line);border-radius:12px;padding:16px 14px;text-align:center;
+    background:rgba(255,255,255,.035);transition:border-color .18s,transform .18s;
+  }
+  .wq-partner:hover{border-color:rgba(163,230,53,.42);transform:translateY(-2px);}
+  .wq-partner b{display:block;font-size:14.5px;color:#e7edf6;margin-bottom:4px;}
+  .wq-partner span{font-size:12px;color:var(--wq-muted);}
+
+  /* ---------- CTA 投稿 ---------- */
+  .wq-cta{
+    border-radius:20px;padding:34px;border:1px solid rgba(34,211,238,.26);
+    background:
+      radial-gradient(600px 220px at 88% 0%,rgba(34,211,238,.18),transparent 65%),
+      linear-gradient(120deg,rgba(124,92,255,.18),rgba(14,20,32,.6));
+    display:flex;gap:26px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  }
+  .wq-cta h2{font-size:clamp(20px,2.3vw,26px);}
+  .wq-cta p{font-size:14px;color:#b8c6d7;margin-top:8px;max-width:52ch;}
+  .wq-cta-actions{display:flex;gap:12px;flex-wrap:wrap;}
+
+  /* ---------- 页脚 ---------- */
+  .wq-footer{border-top:1px solid var(--wq-line);background:rgba(9,13,20,.75);padding:44px 0 26px;margin-top:10px;}
+  .wq-footer-grid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:30px;}
+  .wq-footer h4{font-size:14px;color:#fff;margin-bottom:12px;letter-spacing:.04em;}
+  .wq-footer p{font-size:13px;color:var(--wq-muted);}
+  .wq-footer ul{display:grid;gap:8px;}
+  .wq-footer ul li a{font-size:13px;color:#a8b7c9;}
+  .wq-footer ul li a:hover{color:var(--wq-neon);}
+  .wq-footer-bottom{
+    margin-top:30px;padding-top:18px;border-top:1px dashed rgba(255,255,255,.1);
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:#7d8aa0;
+  }
+  .wq-footer-brandline{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .wq-footer-brandline .wq-brand-mark{width:34px;height:34px;font-size:15px;border-radius:10px;}
+  @media (max-width:860px){
+    .wq-footer-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+  }
+  @media (max-width:520px){
+    .wq-footer-grid{grid-template-columns:minmax(0,1fr);}
+  }
+
+  /* ---------- Toast / 返回顶部 / 弹窗 ---------- */
+  .wq-toast{
+    position:fixed;left:50%;bottom:34px;transform:translate(-50%,18px);
+    background:rgba(11,17,27,.96);border:1px solid rgba(34,211,238,.4);color:#e7edf6;
+    padding:11px 20px;border-radius:12px;font-size:13.5px;z-index:99;opacity:0;pointer-events:none;
+    transition:opacity .22s,transform .22s;box-shadow:0 16px 40px rgba(0,0,0,.5);
+  }
+  .wq-toast.is-on{opacity:1;transform:translate(-50%,0);}
+
+  .wq-top-btn{
+    position:fixed;right:22px;bottom:26px;z-index:80;width:44px;height:44px;border-radius:12px;
+    background:rgba(34,211,238,.16);border:1px solid rgba(34,211,238,.42);color:var(--wq-neon);
+    font-size:17px;display:grid;place-items:center;opacity:0;pointer-events:none;
+    transition:opacity .22s,transform .22s;backdrop-filter:blur(8px);
+  }
+  .wq-top-btn.is-on{opacity:1;pointer-events:auto;}
+  .wq-top-btn:hover{transform:translateY(-3px);background:rgba(34,211,238,.26);}
+
+  .wq-modal{
+    position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:22px;
+    background:rgba(5,9,15,.76);backdrop-filter:blur(4px);
+  }
+  .wq-modal.is-on{display:flex;}
+  .wq-modal-card{
+    width:min(520px,100%);max-height:86vh;overflow:auto;background:#121a28;
+    border:1px solid rgba(34,211,238,.3);border-radius:18px;padding:24px;position:relative;
+    box-shadow:0 30px 70px rgba(0,0,0,.6);
+  }
+  .wq-modal-card h3{font-size:19px;margin-bottom:6px;}
+  .wq-modal-card .wq-modal-sub{font-size:13px;color:var(--wq-muted);margin-bottom:16px;}
+  .wq-modal-close{
+    position:absolute;right:14px;top:12px;background:none;border:none;color:#8ba0b8;font-size:22px;line-height:1;
+  }
+  .wq-modal-close:hover{color:var(--wq-neon);}
+  .wq-field{display:grid;gap:6px;margin-bottom:12px;}
+  .wq-field label{font-size:12.5px;color:#9fb0c6;}
+  .wq-field input,.wq-field textarea{
+    width:100%;background:rgba(255,255,255,.06);border:1px solid var(--wq-line);
+    border-radius:10px;padding:10px 12px;color:var(--wq-text);font-size:13.5px;font-family:inherit;
+  }
+  .wq-field input:focus,.wq-field textarea:focus{outline:none;border-color:rgba(34,211,238,.7);}
+  .wq-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px;flex-wrap:wrap;}
+  .wq-share-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 14px;}
+  .wq-share-grid button{
+    background:rgba(255,255,255,.06);border:1px solid var(--wq-line);border-radius:11px;
+    padding:12px 8px;color:#dbe7f5;font-size:13px;transition:background .16s,border-color .16s;
+  }
+  .wq-share-grid button:hover{background:rgba(34,211,238,.14);border-color:rgba(34,211,238,.4);}
+  .wq-modal-note{font-size:12.5px;color:var(--wq-muted);}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  }
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+<a class="wq-skip" href="#wq-main">跳到主要内容</a>
+
+<div class="wq-sticky-head" id="wq-top">
+  <div class="wq-notice">
+    <div class="wq-wrap wq-notice-inner">
+      <span class="wq-notice-tag">新增</span>
+      <ul class="wq-notice-list">
+        <li><b>11-21</b> 专题《旧物开箱第二季》上线，新增 6 支正片与 1 份拆解手册下载</li>
+        <li><b>11-19</b>「玩物套路挑战赛」报名开启，赛程与投票规则已同步至活动页</li>
+        <li><b>更新</b> 创作者后台支持批量上传 4K 原片（<a href="#wq-submit">查看投稿规范</a>）</li>
+      </ul>
+    </div>
+  </div>
+  <header class="wq-header">
+    <div class="wq-wrap wq-header-inner">
+      <a class="wq-brand" href="#wq-top" aria-label="玩物社区官方网站首页">
+        <span class="wq-brand-mark" aria-hidden="true">玩</span>
+        <span>
+          <span class="wq-brand-name">玩物社区</span>
+          <span class="wq-brand-sub">Official Video Brand</span>
+        </span>
+      </a>
+      <nav class="wq-nav" aria-label="主导航">
+        <a href="#wq-analyze">品牌解析</a>
+        <a href="#wq-focus">焦点内容</a>
+        <a href="#wq-videos">视频频道</a>
+        <a href="#wq-topics">专题企划</a>
+        <a href="#wq-authors">创作者</a>
+        <a href="#wq-rank">榜单</a>
+        <a href="#wq-comments">社区口碑</a>
+        <a href="#wq-faq">帮助</a>
+      </nav>
+      <div class="wq-search wq-search-zone">
+        <input class="wq-search-input" id="wqSearchInput" type="search" placeholder="搜索玩物套路 / 创作者 / 专题" aria-label="搜索站内内容">
+        <button class="wq-search-btn" id="wqSearchBtn" type="button">搜索</button>
+      </div>
+      <button class="wq-burger" id="wqBurger" type="button" aria-expanded="false" aria-controls="wqMobilePanel">☰ 菜单</button>
+    </div>
+    <div class="wq-mobile-panel" id="wqMobilePanel">
+      <div class="wq-wrap">
+        <div class="wq-mobile-search wq-search-zone">
+          <input id="wqMobileSearch" type="search" placeholder="搜索玩物社区套路相关视频" aria-label="移动端搜索">
+          <button class="wq-search-btn" id="wqMobileSearchBtn" type="button">搜</button>
+        </div>
+        <a href="#wq-analyze">品牌解析</a>
+        <a href="#wq-focus">焦点内容</a>
+        <a href="#wq-videos">视频频道</a>
+        <a href="#wq-topics">专题企划</a>
+        <a href="#wq-authors">创作者</a>
+        <a href="#wq-rank">榜单</a>
+        <a href="#wq-comments">社区口碑</a>
+        <a href="#wq-faq">帮助与FAQ</a>
+        <a href="#wq-submit">投稿入口</a>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main id="wq-main">
+
+  <!-- S2 首屏 -->
+  <section class="wq-hero" aria-labelledby="wq-hero-title">
+    <div class="wq-wrap wq-hero-grid">
+      <div>
+        <span class="wq-eyebrow"><i aria-hidden="true"></i>官方视频品牌门户 · 持续运营中</span>
+        <h1 id="wq-hero-title">玩物社区套路</h1>
+        <p class="wq-hero-lead">把「玩」这件事讲透的兴趣视频社区——这里是玩物社区官方网站，我们以原创高清内容记录真实玩法、拆解行业套路、分享创作者经验，让每一次心动都有据可循。</p>
+        <p class="wq-hero-desc">作为深耕兴趣玩物垂直领域的品牌平台，我们围绕玩物社区套路建立从内容生产、创作者扶持到社区互动的完整内容生态，为主理人、玩家与企业搭建值得信赖的高品质视频入口。</p>
+        <div class="wq-hero-actions">
+          <a class="wq-btn wq-btn-primary" href="#wq-videos">进入视频频道</a>
+          <a class="wq-btn wq-btn-ghost" href="#wq-submit" data-wq-open="submit">我要投稿</a>
+          <a class="wq-btn wq-btn-ghost" href="#wq-topics">查看专题企划</a>
+        </div>
+        <div class="wq-hero-stats">
+          <div class="wq-stat"><b data-wq-count="18600">0</b><span>原创高清视频累计</span></div>
+          <div class="wq-stat"><b data-wq-count="1240">0</b><span>入驻认证创作者</span></div>
+          <div class="wq-stat"><b data-wq-count="97">0</b><span>社区口碑好评率 %</span></div>
+        </div>
+      </div>
+      <div class="wq-hero-visual">
+        <span class="wq-hero-float">本季主推 · 套路拆解</span>
+        <figure>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 440'%3E%3Cdefs%3E%3ClinearGradient id='h1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23111a2b'/%3E%3Cstop offset='1' stop-color='%231f2f4d'/%3E%3C/linearGradient%3E%3ClinearGradient id='h2' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%2322d3ee'/%3E%3Cstop offset='1' stop-color='%237c5cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='440' fill='url(%23h1)'/%3E%3Ccircle cx='500' cy='96' r='120' fill='%2322d3ee' opacity='.13'/%3E%3Ccircle cx='128' cy='356' r='96' fill='%237c5cff' opacity='.15'/%3E%3Crect x='92' y='112' width='248' height='158' rx='18' fill='%230e1625' stroke='url(%23h2)' stroke-width='2'/%3E%3Crect x='112' y='132' width='208' height='96' rx='8' fill='%23162740'/%3E%3Cpath d='M300 200 L334 176 L334 224 Z' fill='%2322d3ee' opacity='.9'/%3E%3Crect x='112' y='240' width='120' height='10' rx='5' fill='%2322d3ee' opacity='.6'/%3E%3Crect x='244' y='240' width='76' height='10' rx='5' fill='%23a3e635' opacity='.55'/%3E%3Crect x='372' y='150' width='176' height='86' rx='12' fill='%230e1625' stroke='rgba(255,255,255,.16)'/%3E%3Crect x='390' y='168' width='92' height='9' rx='4.5' fill='%23e7edf6' opacity='.8'/%3E%3Crect x='390' y='188' width='140' height='8' rx='4' fill='%2394a3b8' opacity='.6'/%3E%3Crect x='390' y='206' width='64' height='8' rx='4' fill='%2394a3b8' opacity='.45'/%3E%3Crect x='372' y='262' width='176' height='86' rx='12' fill='%230e1625' stroke='rgba(255,255,255,.16)'/%3E%3Ccircle cx='404' cy='304' r='18' fill='%237c5cff' opacity='.7'/%3E%3Crect x='434' y='288' width='94' height='9' rx='4.5' fill='%23e7edf6' opacity='.78'/%3E%3Crect x='434' y='308' width='72' height='8' rx='4' fill='%2394a3b8' opacity='.55'/%3E%3Crect x='92' y='304' width='248' height='1' fill='rgba(255,255,255,.14)'/%3E%3Crect x='92' y='326' width='150' height='9' rx='4.5' fill='%23e7edf6' opacity='.7'/%3E%3Crect x='92' y='348' width='216' height='8' rx='4' fill='%2394a3b8' opacity='.5'/%3E%3C/svg%3E" width="640" height="440" alt="玩物社区官方网站首屏主视觉：兴趣视频播放界面与创作者内容卡片组合">
+        </figure>
+        <div class="wq-hero-badge"><b>4K 高清</b> · 原创正版 · 企业级内容生态</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 深度解析（关键词解析 800 字以上） -->
+  <section class="wq-section" id="wq-analyze" aria-labelledby="wq-analyze-title">
+    <div class="wq-wrap">
+      <div class="wq-sec-head">
+        <div>
+          <p class="wq-sec-kicker">Brand Insight · 深度解析</p>
+          <h2 id="wq-analyze-title">玩物社区套路，为什么值得被认真记录</h2>
+          <p>从玩物社区官方网站的视角，拆解「套路」二字背后的方法、经验与社区共识。</p>
+        </div>
+        <a class="wq-sec-more" href="#wq-videos">看对应视频 →</a>
+      </div>
+      <div class="wq-analyze">
+        <div class="wq-analyze-main">
+          <h3>一、「套路」不是捷径，而是玩物社区沉淀下来的公共经验</h3>
+          <p>在玩物社区里，「套路」最初来自玩家之间的一句玩笑——谁又把同一件小物拍出了新花样，谁又在预算有限的情况下搭出了意外好看的组合。久而久之，这些被反复验证的做法被整理成可复述、可学习、可讨论的经验，成为玩物社区套路的内容底色。我们把它理解为一种<strong>公开的方法论</strong>：不是教人走捷径，而是让新手少踩坑，让老手有对照。</p>
+          <p>玩物社区官网在内容审核上坚持真实优先。凡标注「套路拆解」的视频，需要提供完整的选品过程、成片对照与失败版本，鼓励创作者把不顺利的部分也剪进去。因为只有把失败摊开讲，经验才有可信度，社区才有可能形成稳定的口碑。这也是我们持续运营这套内容体系的最基本判断：<strong>品质来自可复现，而不是来自包装</strong>。</p>
+          <h3>二、从一支视频到一套内容生态：玩物社区套路的四个层次</h3>
+          <p>第一层是入门层，解决「怎么开始」。例如第一次接触某种玩物时，需要准备什么、预算怎么分配、哪些配件属于可选项。第二层是方法层，回答「怎么做得更好」，包括拍摄角度、光线处理、收纳动线、长期保养。第三层是判断层，帮助用户分辨哪些说法是行业惯例、哪些只是营销话术，这在玩物社区套路中尤为关键。第四层是表达层，把个人的玩法讲成别人愿意看完的故事，让内容具备传播力。</p>
+          <p>这四层并不是线性通关，而是循环往复。一位创作者可能在方法层已经非常熟练，却仍需要回到入门层，用新手的视角重新讲一遍。玩物社区官方网站因此在每个专题下都保留了「从零开始」的入口，也让资深玩家可以在评论区补充细节，形成<strong>多元而包容</strong>的讨论氛围。</p>
+          <h3>三、创作者、用户与企业：三方共建的玩物社区套路</h3>
+          <p>对创作者而言，套路是一份可积累的资产。我们会把优质内容纳入精品内容库，提供高清母版下载、二次剪辑授权与专题推荐位，帮助创作者把一次拍摄变成长期可被检索的作品。对用户而言，套路是一份可信的参考，看到的是具体做法而不是模糊感受，也因此更愿意收藏、评论与转发。对企业与品牌方而言，套路是一套沟通语言，能更准确地理解玩家真正关心什么，从而把产品信息做得更克制、更有用。</p>
+          <p>作为行业领先的兴趣视频平台，玩物社区并不追求内容数量的无限膨胀，而是把精力放在结构清晰、可持续更新的专题上。每一季我们只推进少量企划，确保每个企划都能完成从选题、拍摄、上线到社区回访的闭环。社会责任也体现在这里：不夸大效果、不制造焦虑、不鼓励盲目消费，让玩物回归玩物本身。</p>
+          <h3>四、如何判断一条玩物社区套路是否值得学</h3>
+          <p>我们建议用户在观看时留意三个信号。其一是可复现性：视频是否交代了前置条件与预算区间，是否给出失败案例。其二是信息密度：是否在有限时长里解决了具体问题，而不是反复强调情绪。其三是社区反馈：评论区是否有真实用户补充经验，创作者是否愿意回应质疑。满足这三点的内容，通常会在玩物社区的口碑榜上有不错表现。</p>
+          <p>我们也鼓励用户主动参与共建。看到更好用的做法，可以在评论区补充；发现表述不准确，可以通过反馈入口提交；愿意系统整理，可以申请成为认证创作者。玩物社区套路的生命力，正来自这种持续运营的社区协作，而不是某一位创作者的单向输出。</p>
+        </div>
+        <aside class="wq-analyze-side">
+          <div class="wq-side-card">
+            <h4>本页内容构成</h4>
+            <p>以玩物社区套路为主线，覆盖日常记录、经验分享、深度测评、创作幕后与行业观察五个方向。</p>
+            <ul class="wq-side-list">
+              <li>焦点内容 2 组重点推荐</li>
+              <li>视频频道 5 支精品条目</li>
+              <li>专题企划 3 个持续更新中</li>
+              <li>创作者矩阵 6 位认证作者</li>
+            </ul>
+          </div>
+          <div class="wq-side-card">
+            <h4>官方提醒</h4>
+            <p>站内所有标注「套路拆解」的内容均为原创正版，转载需获得授权。请通过官方投稿入口提交作品，避免非官方渠道带来的版权风险。</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- M2 焦点内容 -->
+  <section class="wq-section" id="wq-focus" aria-labelledby="wq-focus-title">
+    <div class="wq-wrap">
+      <div class="wq-sec-head">
+        <div>
+          <p class="wq-sec-kicker">Focus · 本周焦点</p>
+          <h2 id="wq-focus-title">玩物社区套路焦点推荐</h2>
+          <p>两支重点内容，配四组编辑推荐，快速进入本周精选。</p>
+        </div>
+        <a class="wq-sec-more" href="#wq-videos">更多视频 →</a>
+      </div>
+      <div class="wq-focus-grid">
+        <article class="wq-focus-main">
+          <div class="wq-cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='f1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230b1220'/%3E%3Cstop offset='1' stop-color='%2320324f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23f1)'/%3E%3Crect x='40' y='44' width='240' height='272' rx='14' fill='%23132236' stroke='%2322d3ee' stroke-opacity='.5'/%3E%3Crect x='62' y='70' width='196' height='120' rx='8' fill='%230e1b2c'/%3E%3Ccircle cx='112' cy='112' r='18' fill='%2322d3ee' opacity='.7'/%3E%3Cpath d='M100 112 L108 104 L108 120 Z' fill='%23051218'/%3E%3Crect x='62' y='206' width='120' height='9' rx='4.5' fill='%23e7edf6' opacity='.75'/%3E%3Crect x='62' y='226' width='168' height='8' rx='4' fill='%2394a3b8' opacity='.55'/%3E%3Crect x='62' y='250' width='90' height='8' rx='4' fill='%23a3e635' opacity='.5'/%3E%3Crect x='320' y='60' width='270' height='120' rx='12' fill='%23132236' stroke='rgba(255,255,255,.15)'/%3E%3Crect x='340' y='80' width='140' height='9' rx='4.5' fill='%23e7edf6' opacity='.8'/%3E%3Crect x='340' y='100' width='210' height='8' rx='4' fill='%2394a3b8' opacity='.5'/%3E%3Crect x='340' y='120' width='96' height='8' rx='4' fill='%237c5cff' opacity='.6'/%3E%3Crect x='320' y='200' width='270' height='116' rx='12' fill='%23132236' stroke='rgba(255,255,255,.15)'/%3E%3Crect x='340' y='222' width='60' height='60' rx='8' fill='%237c5cff' opacity='.55'/%3E%3Crect x='416' y='228' width='150' height='9' rx='4.5' fill='%23e7edf6' opacity='.78'/%3E%3Crect x='416' y='248' width='112' height='8' rx='4' fill='%2394a3b8' opacity='.5'/%3E%3Crect x='340' y='296' width='180' height='6' rx='3' fill='%2322d3ee' opacity='.4'/%3E%3C/svg%3E" width="640" height="360" alt="焦点视频封面：玩物社区套路入门清单与播放界面示意">
+            <span class="wq-cover-tag">重点推荐</span>
+            <span class="wq-cover-play"><i aria-hidden="true"></i>12:46</span>
+          </div>
+          <h3>玩物社区套路入门：一份能照着做的第一次清单</h3>
+          <p>从预算分配、基础配件到第一次拍摄的机位选择，用一支视频把新手最常问的问题一次讲清。片中保留了两段失败素材，方便对照判断。</p>
+          <div class="wq-meta">
+            <span>作者：木匣书房</span>
+            <span>播放 18.6 万</span>
+            <span>点赞 9,240</span>
+            <span>收藏 6,120</span>
+          </div>
+        </article>
+        <div class="wq-focus-list">
+          <article class="wq-focus-item">
+            <span class="wq-focus-no">01</span>
+            <div>
+              <h4>同一件小物，三种拍法的对照实验</h4>
+              <p>自然光、室内补光与夜景三种条件下，同一套玩物社区套路呈现出的差异与取舍。</p>
+            </div>
+          </article>
+          <article class="wq-focus-item">
+            <span class="wq-focus-no">02</span>
+            <div>
+              <h4>二手市场避坑实录：五个真实案例</h4>
+              <p>整理自社区投稿的真实交易经历，逐条标注风险点与验证方式。</p>
+            </div>
+          </article>
+          <article class="wq-focus-item">
+            <span class="wq-focus-no">03</span>
+            <div>
+              <h4>创作者访谈：一年更新 40 支视频的节奏</h4>
+              <p>聊选题库、拍摄排期与停更焦虑，给持续更新的人一点具体参考。</p>
+            </div>
+          </article>
+          <article class="wq-focus-item">
+            <span class="wq-focus-no">04</span>
+            <div>
+              <h4>收纳动线拆解：小空间也能有秩序</h4>
+              <p>从取用频率出发重新安排位置，视频附完整动线示意图。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- M3 视频频道 -->
+  <section class="wq-section" id="wq-videos" aria-labelledby="wq-videos-title">
+    <div class="wq-wrap">
+      <div class="wq-sec-head">
+        <div>
+          <p class="wq-sec-kicker">Videos · 视频频道</p>
+          <h2 id="wq-videos-title">玩物社区套路精品视频</h2>
+          <p>文字列表优先，重点条目配封面。点赞与收藏状态会在本页保留，方便你稍后回来继续看。</p>
+        </div>
+        <a class="wq-sec-more" href="#wq-topics">按专题浏览 →</a>
+      </div>
+      <p class="wq-search-msg" id="wqSearchMsg" role="status" aria-live="polite"></p>
+      <div class="wq-video-list" id="wqVideoList">
+
+        <article class="wq-video-row">
+          <div class="wq-video-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='v1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230d1727'/%3E%3Cstop offset='1' stop-color='%231b2b45'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23v1)'/%3E%3Crect x='26' y='30' width='120' height='120' rx='10' fill='%23132236' stroke='%2322d3ee' stroke-opacity='.45'/%3E%3Crect x='44' y='48' width='84' height='58' rx='6' fill='%230e1b2c'/%3E%3Ccircle cx='86' cy='77' r='13' fill='%2322d3ee' opacity='.75'/%3E%3Crect x='44' y='120' width='60' height='7' rx='3.5' fill='%23e7edf6' opacity='.7'/%3E%3Crect x='44' y='134' width='84' height='6' rx='3' fill='%2394a3b8' opacity='.5'/%3E%3Crect x='170' y='42' width='124' height='10' rx='5' fill='%23e7edf6' opacity='.8'/%3E%3Crect x='170' y='64' width='98' height='8' rx='4' fill='%2394a3b8' opacity='.55'/%3E%3Crect x='170' y='84' width='112' height='8' rx='4' fill='%23a3e635' opacity='.45'/%3E%3Crect x='170' y='112' width='72' height='22' rx='11' fill='%2322d3ee' opacity='.25'/%3E%3Cpath d='M184 118 L194 123 L184 128 Z' fill='%2322d3ee'/%3E%3Crect x='170' y='146' width='124' height='1' fill='rgba(255,255,255,.14)'/%3E%3C/svg%3E" width="320" height="180" alt="视频封面：新手第一次布置玩物桌面与拍摄机位对照">
+          </div>
+          <div class="wq-video-body">
+            <h3>玩物社区套路：第一次布置桌面的四个决策点</h3>
+            <p>从承重、走线、视线高度到清洁维护，把桌面布置拆成四个可执行的决策点，附常见错误对照与预算区间说明。</p>
+            <div class="wq-tags">
+              <span class="wq-tag">经验分享</span>
+              <span class="wq-tag is-alt">家居收纳</span>
+              <span class="wq-tag">新手友好</span>
+            </div>
+            <div class="wq-meta"><span>作者：木匣书房</span><span>播放 12.4 万</span><span>18:20</span></div>
+          </div>
+          <div class="wq-video-actions">
+            <button class="wq-like-btn" type="button" data-wq-like data-count="8240" aria-pressed="false">♡ <span>8,240</span></button>
+            <button class="wq-fav-btn" type="button" data-wq-fav aria-pressed="false">☆ 收藏</button>
+            <span class="wq-video-author">更新于 11-18</span>
+          </div>
+        </article>
+
+        <article class="wq-video-row">
+          <div class="wq-video-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23101a2a'/%3E%3Ccircle cx='80' cy='94' r='52' fill='%237c5cff' opacity='.22'/%3E%3Ccircle cx='80' cy='94' r='30' fill='%237c5cff' opacity='.5'/%3E%3Cpath d='M72 82 L72 106 L94 94 Z' fill='%23e7edf6'/%3E%3Crect x='166' y='40' width='126' height='9' rx='4.5' fill='%23e7edf6' opacity='.8'/%3E%3Crect x='166' y='60' width='96' height='8' rx='4' fill='%2394a3b8' opacity='.5'/%3E%3Crect x='166' y='80' width='110' height='8' rx='4' fill='%2394a3b8' opacity='.45'/%3E%3Crect x='166' y='108' width='60' height='20' rx='10' fill='%23a3e635' opacity='.28'/%3E%3Crect x='166' y='140' width='126' height='6' rx='3' fill='%2322d3ee' opacity='.35'/%3E%3Crect x='24' y='152' width='120' height='6' rx='3' fill='%23e7edf6' opacity='.35'/%3E%3C/svg%3E" width="320" height="180" alt="视频封面：二手市场避坑要点与交易流程示意">
+          </div>
+          <div class="wq-video-body">
+            <h3>二手交易避坑指南：先看这五个信号</h3>
+            <p>基于社区三百余条投稿整理，归纳出描述含糊、图片重复、价格异常等信号，并给出可操作的验证话术。</p>
+            <div class="wq-tags">
+              <span class="wq-tag">深度测评</span>
+              <span class="wq-tag is-alt">行业观察</span>
+            </div>
+            <div class="wq-meta"><span>作者：旧物雷达</span><span>播放 9.8 万</span><span>14:02</span></div>
+          </div>
+          <div class="wq-video-actions">
+            <button class="wq-like-btn" type="button" data-wq-like data-count="6120" aria-pressed="false">♡ <span>6,120</span></button>
+            <button class="wq-fav-btn" type="button" data-wq-fav aria-pressed="false">☆ 收藏</button>
+            <span class="wq-video-author">更新于 11-15</span>
+          </div>
+        </article>
+
+        <article class="wq-video-row">
+          <div class="wq-video-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%230c1524'/%3E%3Cpath d='M0 140 L80 96 L150 126 L230 74 L320 110 L320 180 L0 180 Z' fill='%2322d3ee' opacity='.13'/%3E%3Crect x='36' y='38' width='96' height='64' rx='8' fill='%23132236' stroke='%23a3e635' stroke-opacity='.4'/%3E%3Crect x='52' y='54' width='64' height='6' rx='3' fill='%23e7edf6' opacity='.7'/%3E%3Crect x='52' y='70' width='40' height='6' rx='3' fill='%23a3e635' opacity='.6'/%3E%3Crect x='168' y='56' width='120' height='8' rx='4' fill='%23e7edf6' opacity='.75'/%3E%3Crect x='168' y='76' width='88' height='7' rx='3.5' fill='%2394a3b8' opacity='.5'/%3E%3Ccircle cx='256' cy='140' r='24' fill='%237c5cff' opacity='.45'/%3E%3Crect x='36' y='126' width='86' height='7' rx='3.5' fill='%2394a3b8' opacity='.45'/%3E%3C/svg%3E" width="320" height="180" alt="视频封面：创作者一年更新节奏与选题排期表">
+          </div>
+          <div class="wq-video-body">
+            <h3>一年更新 40 支视频：我的选题库与排期表</h3>
+            <p>公开创作者真实使用的选题库结构与排期方法，包括如何应对停更焦虑、如何复用旧素材。</p>
+            <div class="wq-tags">
+              <span class="wq-tag">创作幕后</span>
+              <span class="wq-tag is-alt">教程干货</span>
+            </div>
+            <div class="wq-meta"><span>作者：慢速频道</span><span>播放 7.6 万</span><span>22:31</span></div>
+          </div>
+          <div class="wq-video-actions">
+            <button class="wq-like-btn" type="button" data-wq-like data-count="4980" aria-pressed="false">♡ <span>4,980</span></button>
+            <button class="wq-fav-btn" type="button" data-wq-fav aria-pressed="false">☆ 收藏</button>
+            <span class="wq-video-author">更新于 11-12</span>
+          </div>
+        </article>
+
+        <article class="wq-video-row">
+          <div class="wq-video-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23111d2f'/%3E%3Crect x='30' y='30' width='260' height='120' rx='12' fill='%230d1624' stroke='rgba(255,255,255,.12)'/%3E%3Crect x='50' y='52' width='90' height='70' rx='6' fill='%231b2c44'/%3E%3Crect x='156' y='52' width='114' height='10' rx='5' fill='%23e7edf6' opacity='.75'/%3E%3Crect x='156' y='74' width='84' height='8' rx='4' fill='%2394a3b8' opacity='.5'/%3E%3Crect x='156' y='94' width='100' height='8' rx='4' fill='%2322d3ee' opacity='.55'/%3E%3Crect x='156' y='116' width='48' height='16' rx='8' fill='%23a3e635' opacity='.35'/%3E%3Crect x='50' y='134' width='220' height='1' fill='rgba(255,255,255,.14)'/%3E%3C/svg%3E" width="320" height="180" alt="视频封面：小空间收纳动线示意图与取用频率标注">
+          </div>
+          <div class="wq-video-body">
+            <h3>收纳动线拆解：按取用频率重排位置</h3>
+            <p>不买新柜子也能改善秩序。以一件日常玩物为例，演示从取用频率出发的三步调整法。</p>
+            <div class="wq-tags">
+              <span class="wq-tag">实用技巧</span>
+              <span class="wq-tag is-alt">家居收纳</span>
+            </div>
+            <div class="wq-meta"><span>作者：木匣书房</span><span>播放 6.2 万</span><span>11:08</span></div>
+          </div>
+          <div class="wq-video-actions">
+            <button class="wq-like-btn" type="button" data-wq-like data-count="3620" aria-pressed="false">♡ <span>3,620</span></button>
+            <button class="wq-fav-btn" type="button" data-wq-fav aria-pressed="false">☆ 收藏</button>
+            <span class="wq-video-author">更新于 11-09</span>
+          </div>
+        </article>
+
+        <article class="wq-video-row">
+          <div class="wq-video-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%230e1828'/%3E%3Ccircle cx='248' cy='58' r='42' fill='%23fbbf24' opacity='.18'/%3E%3Ccircle cx='248' cy='58' r='22' fill='%23fbbf24' opacity='.4'/%3E%3Crect x='34' y='46' width='124' height='88' rx='10' fill='%23142439' stroke='%237c5cff' stroke-opacity='.45'/%3E%3Crect x='52' y='64' width='88' height='7' rx='3.5' fill='%23e7edf6' opacity='.7'/%3E%3Crect x='52' y='82' width='60' height='7' rx='3.5' fill='%237c5cff' opacity='.6'/%3E%3Crect x='52' y='104' width='88' height='6' rx='3' fill='%2394a3b8' opacity='.45'/%3E%3Crect x='34' y='148' width='252' height='1' fill='rgba(255,255,255,.13)'/%3E%3Crect x='180' y='120' width='106' height='7' rx='3.5' fill='%2394a3b8' opacity='.45'/%3E%3C/svg%3E" width="320" height="180" alt="视频封面：创作者访谈现场与年度选题复盘">
+          </div>
+          <div class="wq-video-body">
+            <h3>创作者访谈：把「套路」讲成故事的三条线索</h3>
+            <p>与三位认证创作者对谈，讨论如何在不夸大效果的前提下，让方法类视频依然有观看节奏。</p>
+            <div class="wq-tags">
+              <span class="wq-tag">人物访谈</span>
+              <span class="wq-tag is-alt">创作幕后</span>
+            </div>
+            <div class="wq-meta"><span>作者：玩物编辑部</span><span>播放 5.4 万</span><span>26:15</span></div>
+          </div>
+          <div class="wq-video-actions">
+            <button class="wq-like-btn" type="button" data-wq-like data-count="3120" aria-pressed="false">♡ <span>3,120</span></button>
+            <button class="wq-fav-btn" type="button" data-wq-fav aria-pressed="false">☆ 收藏</button>
+            <span class="wq-video-author">更新于 11-06</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- M4 专题 -->
+  <section class="wq-section" id="wq-topics" aria-labelledby="wq-topics-title">
+    <div class="wq-wrap">
+      <div class="wq-sec-head">
+        <div>
+          <p class="wq-sec-kicker">Series · 专题企划</p>
+          <h2 id="wq-topics-title">三组进行中的玩物社区套路专题</h2>
+          <p>专题按季推进，每个专题保持稳定更新，并同步收录社区补充内容。</p>
+        </div>
+        <a class="wq-sec-more" href="#wq-submit">申请共建 →</a>
+      </div>
+      <div class="wq-topic-grid">
+        <article class="wq-topic">
+          <div class="wq-topic-top">
+            <h3>旧物开箱第二季</h3>
+            <span class="wq-topic-status">更新中</span>
+          </div>
+          <p>把镜头对准被低估的旧物，拆解挑选标准、清洁保养与二次搭配的完整套路，强调耐用与可持续。</p>
+          <ul>
+            <li>第一集：三件旧物的清洁工序对照</li>
+            <li>第二集：预算两百元内的组合方案</li>
+            <li>第三集：长期使用后的磨损记录</li>
+          </ul>
+        </article>
+        <article class="wq-topic">
+          <div class="wq-topic-top">
+            <h3>玩物套路挑战赛</h3>
+            <span class="wq-topic-status">报名中</span>
+          </div>
+          <p>面向全站创作者的季度挑战，围绕同一主题提交原创短片，由社区投票与编辑部评审共同决定结果。</p>
+          <ul>
+            <li>赛程：11-19 报名，12-06 截止投稿</li>
+            <li>规则：单支不超过 8 分钟，需附方法论</li>
+            <li>评审：社区投票 40% + 编辑部 60%</li>
+          </ul>
+        </article>
+        <article class="wq-topic">
+          <div class="wq-topic-top">
+            <h3>创作者的日常工作台</h3>
+            <span class="wq-topic-status is-plan">筹备中</span>
+          </div>
+          <p>走进创作者的拍摄现场，记录工作台布置、设备维护与素材归档的细节，呈现真实的工作节奏。</p>
+          <ul>
+            <li>预告：三位创作者的桌面实录</li>
+            <li>预告：素材归档与备份流程</li>
+            <li>预告：设备保养的年度清单</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- M5 创作者矩阵（双列简介） -->
+  <section class="wq-section" id="wq-authors" aria-labelledby="wq-authors-title">
+    <div class="wq-wrap">
+      <div class="wq-sec-head">
+        <div>
+          <p class="wq-sec-kicker">Creators · 创作者矩阵</p>
+          <h2 id="wq-authors-title">玩物社区套路的六位认证创作者</h2>
+          <p>所有认证创作者均通过原创审核，作品在站内可持续获得推荐与社区反馈。</p>
+        </div>
+        <a class="wq-sec-more" href="#wq-submit">成为创作者 →</a>
+      </div>
+      <div class="wq-author-duo">
+
+        <article class="wq-author-card">
+          <span class="wq-avatar a1" aria-hidden="true">木</span>
+          <div>
+            <h3>木匣书房</h3>
+            <p class="wq-author-role">擅长领域：桌面布置 · 收纳动线</p>
+            <p>七年家居内容创作者，习惯把一件小事拆成可执行的步骤。坚持在每支视频里保留失败素材，认为不顺利的部分同样值得被记录。</p>
+            <div class="wq-author-nums"><span><b>126</b> 作品</span><span><b>8.4万</b> 粉丝</span></div>
+            <button class="wq-author-more" type="button" data-wq-open="author" data-wq-author="木匣书房">查看档案</button>
+          </div>
+        </article>
+
+        <article class="wq-author-card">
+          <span class="wq-avatar a2" aria-hidden="true">旧</span>
+          <div>
+            <h3>旧物雷达</h3>
+            <p class="wq-author-role">擅长领域：深度测评 · 二手交易</p>
+            <p>专注二手市场的长期观察者，擅长用案例说明风险。内容以核验流程与话术为主，拒绝夸张标题，在社区里以严谨著称。</p>
+            <div class="wq-author-nums"><span><b>88</b> 作品</span><span><b>6.1万</b> 粉丝</span></div>
+            <button class="wq-author-more" type="button" data-wq-open="author" data-wq-author="旧物雷达">查看档案</button>
+          </div>
+        </article>
+
+        <article class="wq-author-card">
+          <span class="wq-avatar a3" aria-hidden="true">慢</span>
+          <div>
+            <h3>慢速频道</h3>
+            <p class="wq-author-role">擅长领域：创作幕后 · 更新节奏</p>
+            <p>用一年四十支视频的稳定输出证明节奏可以被设计。乐于公开选题库与排期表，帮助刚起步的创作者走出停更焦虑。</p>
+            <div class="wq-author-nums"><span><b>94</b> 作品</span><span><b>5.7万</b> 粉丝</span></div>
+            <button class="wq-author-more" type="button" data-wq-open="author" data-wq-author="慢速频道">查看档案</button>
+          </div>
+        </article>
+
+        <article class="wq-author-card">
+          <span class="wq-avatar a4" aria-hidden="true">巷</span>
+          <div>
+            <h3>巷口观察</h3>
+            <p class="wq-author-role">擅长领域：城市探索 · 在地文化</p>
+            <p>走街串巷记录小店的玩法与手艺，擅长把地方经验讲成通用的方法。作品节奏舒缓，但信息密度高，常被社区作为参考范例。</p>
+            <div class="wq-author-nums"><span><b>72</b> 作品</span><span><b>4.9万</b> 粉丝</span></div>
+            <button class="wq-author-more" type="button" data-wq-open="author" data-wq-author="巷口观察">查看档案</button>
+          </div>
+        </article>
+
+        <article class="wq-author-card">
+          <span class="wq-avatar a5" aria-hidden="true">蓝</span>
+          <div>
+            <h3>蓝棚手记</h3>
+            <p class="wq-author-role">擅长领域：拍摄教程 · 光线控制</p>
+            <p>从摄影棚转到家庭场景的内容作者，擅长用最少设备完成稳定画面，教程步骤清晰，常附可直接照抄的参数表。</p>
+            <div class="wq-author-nums"><span><b>110</b> 作品</span><span><b>7.2万</b> 粉丝</span></div>
+            <button class="wq-author-more" type="button" data-wq-open="author" data-wq-author="蓝棚手记">查看档案</button>
+          </div>
+        </article>
+
+        <article class="wq-author-card">
+          <span class="wq-avatar a6" aria-hidden="true">编</span>
+          <div>
+            <h3>玩物编辑部</h3>
+            <p class="wq-author-role">擅长领域：人物访谈 · 行业观察</p>
+            <p>玩物社区官方网站的官方内容团队，负责专题企划与创作者访谈，持续输出有判断力的观察内容与社区活动信息。</p>
+            <div class="wq-author-nums"><span><b>156</b> 作品</span><span><b>12.3万</b> 粉丝</span></div>
+            <button class="wq-author-more" type="button" data-wq-open="author" data-wq-author="玩物编辑部">查看档案</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- M14 数据榜单 + M6 故事随笔 -->
+  <section class="wq-section" id="wq-rank" aria-labelledby="wq-rank-title">
+    <div class="wq-wrap">
+      <div class="wq-sec-head">
+        <div>
+          <p class="wq-sec-kicker">Rank · 数据榜单</p>
+          <h2 id="wq-rank-title">玩物社区套路热度与口碑榜</h2>
+          <p>榜单按周更新，数据来自站内播放、收藏与社区评价的综合计算。</p>
+        </div>
+        <a class="wq-sec-more" href="#wq-videos">进入视频频道 →</a>
+      </div>
+      <div class="wq-rank-grid">
+        <div class="wq-rank-col">
+          <h3>本周热度榜</h3>
+          <div class="wq-rank-item top"><span class="wq-rank-num">1</span><span class="wq-rank-title">玩物社区套路入门：第一次清单</span><span class="wq-rank-score">98.6</span></div>
+          <div class="wq-rank-item top"><span class="wq-rank-num">2</span><span class="wq-rank-title">二手交易避坑指南五个信号</span><span class="wq-rank-score">95.2</span></div>
+          <div class="wq-rank-item"><span class="wq-rank-num">3</span><span class="wq-rank-title">同一件小物三种拍法对照</span><span class="wq-rank-score">91.7</span></div>
+          <div class="wq-rank-item"><span class="wq-rank-num">4</span><span class="wq-rank-title">收纳动线拆解</span><span class="wq-rank-score">88.4</span></div>
+          <div class="wq-rank-item"><span class="wq-rank-num">5</span><span class="wq-rank-title">一年更新四十支视频</span><span class="wq-rank-score">86.1</span></div>
+        </div>
+        <div class="wq-rank-col">
+          <h3>新人榜</h3>
+          <div class="wq-rank-item top"><span class="wq-rank-num">1</span><span class="wq-rank-title">纸盒工坊</span><span class="wq-rank-score">7 支新作</span></div>
+          <div class="wq-rank-item top"><span class="wq-rank-num">2</span><span class="wq-rank-title">灯下小记</span><span class="wq-rank-score">6 支新作</span></div>
+          <div class="wq-rank-item"><span class="wq-rank-num">3</span><span class="wq-rank-title">午后拆解</span><span class="wq-rank-score">5 支新作</span></div>
+          <div class="wq-rank-item"><span class="wq-rank-num">4</span><span class="wq-rank-title">齿轮手作</span><span class="wq-rank-score">5 支新作</span></div>
+          <div class="wq-rank-item"><span class="wq-rank-num">5</span><span class="wq-rank-title">木纹计划</span><span class="wq-rank-score">4 支新作</span></div>
+        </div>
+        <div class="wq-rank-col">
+          <h3>口碑榜</h3>
+          <div class="wq-rank-item top"><span class="wq-rank-num">1</span><span class="wq-rank-title">巷口观察 · 地方手艺记录</span><span class="wq-rank-score">9.7 分</span></div>
+          <div class="wq-rank-item top"><span class="wq-rank-num">2</span><span class="wq-rank-title">蓝棚手记 · 光线控制教程</span><span class="wq-rank-score">9.5 分</span></div>
+          <div class="wq-rank-item"><span class="wq-rank-num">3</span><span class="wq-rank-title">木匣书房 · 收纳动线</span><span class="wq-rank-score">9.3 分</span></div>
+          <div class="wq-rank-item"><span class="wq-rank-num">4</span><span class="wq-rank-title">旧物雷达 · 交易核验</span><span class="wq-rank-score">9.1 分</span></div>
+          <div class="wq-rank-item"><span class="wq-rank-num">5</span><span class="wq-rank-title">慢速频道 · 创作幕后</span><span class="wq-rank-score">8.9 分</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- M8 评论（双列短评） -->
+  <section class="wq-section" id="wq-comments" aria-labelledby="wq-comments-title">
+    <div class="wq-wrap">
+      <div class="wq-sec-head">
+        <div>
+          <p class="wq-sec-kicker">Community · 社区口碑</p>
+          <h2 id="wq-comments-title">用户这样说玩物社区套路</h2>
+          <p>不同角度的真实反馈，帮助我们持续校准内容方向与呈现方式。</p>
+        </div>
+        <a class="wq-sec-more" href="#wq-faq">常见问题 →</a>
+      </div>
+      <div class="wq-comment-two">
+        <article class="wq-comment">
+          <div class="wq-comment-head"><span class="wq-comment-avatar" style="background:linear-gradient(140deg,#22d3ee,#7c5cff)" aria-hidden="true">林</span><b>林间慢行</b><span>11-20</span></div>
+          <p><em class="wq-comment-mark">「</em>第一次按视频里的清单准备，确实少买了很多用不上的东西。最喜欢的是把失败素材留下来这件事，让人信任。<em class="wq-comment-mark">」</em></p>
+        </article>
+        <article class="wq-comment">
+          <div class="wq-comment-head"><span class="wq-comment-avatar" style="background:linear-gradient(140deg,#a3e635,#22d3ee)" aria-hidden="true">阿</span><b>阿丘的桌角</b><span>11-19</span></div>
+          <p>收纳动线那支我看了三遍，照着重排之后取东西顺手很多。希望后面能出一期关于长期维护的。</p>
+        </article>
+        <article class="wq-comment">
+          <div class="wq-comment-head"><span class="wq-comment-avatar" style="background:linear-gradient(140deg,#ff8fb1,#7c5cff)" aria-hidden="true">小</span><b>小满不忙</b><span>11-18</span></div>
+          <p><em class="wq-comment-mark">「</em>对比过几个平台，玩物社区的视频节奏最舒服，讲得清楚也不催你买。<em class="wq-comment-mark">」</em></p>
+        </article>
+        <article class="wq-comment">
+          <div class="wq-comment-head"><span class="wq-comment-avatar" style="background:linear-gradient(140deg,#fbbf24,#ff8fb1)" aria-hidden="true">铁</span><b>铁皮小盒</b><span>11-17</span></div>
+          <p>二手避坑那期很实用，尤其是核验话术。建议再补充一下物流环节的注意事项，评论区已经有人补充了经验。</p>
+        </article>
+        <article class="wq-comment">
+          <div class="wq-comment-head"><span class="wq-comment-avatar" style="background:linear-gradient(140deg,#38bdf8,#a3e635)" aria-hidden="true">云</span><b>云上木工</b><span>11-16</span></div>
+          <p>作为创作者，我更喜欢这里的投稿规范，讲清楚了什么能做什么不能做，改稿意见也很具体，不是一句「再优化一下」。</p>
+        </article>
+        <article class="wq-comment">
+          <div class="wq-comment-head"><span class="wq-comment-avatar" style="background:linear-gradient(140deg,#c084fc,#38bdf8)" aria-hidden="true">夜</span><b>夜航船</b><span>11-15</span></div>
+          <p><em class="wq-comment-mark">「</em>套路这个词一开始让我有点警惕，看下来发现是在讲方法，没有硬推产品，这点很难得。<em class="wq-comment-mark">」</em></p>
+        </article>
+        <article class="wq-comment">
+          <div class="wq-comment-head"><span class="wq-comment-avatar" style="background:linear-gradient(140deg,#22d3ee,#a3e635)" aria-hidden="true">南</span><b>南窗笔记</b><span>11-14</span></div>
+          <p>专题企划的更新节奏稳，每季都能看到完整的一组内容，不用零零散散地找，这点比很多地方都强。</p>
+        </article>
+        <article class="wq-comment">
+          <div class="wq-comment-head"><span class="wq-comment-avatar" style="background:linear-gradient(140deg,#7c5cff,#ff8fb1)" aria-hidden="true">三</span><b>三分热度</b><span>11-13</span></div>
+          <p><em class="wq-comment-mark">「</em>唯一想提的建议是希望增加字幕下载，有些术语想边看边记。<em class="wq-comment-mark">」</em></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- M10 动态 + M12 FAQ -->
+  <section class="wq-section" id="wq-faq" aria-labelledby="wq-faq-title">
+    <div class="wq-wrap">
+      <div class="wq-sec-head">
+        <div>
+          <p class="wq-sec-kicker">Updates & FAQ · 动态与帮助</p>
+          <h2 id="wq-faq-title">玩物社区企业动态与常见问题</h2>
+          <p>官方发布与规则更新集中在此，帮助创作者与用户快速了解变化。</p>
+        </div>
+        <a class="wq-sec-more" href="#wq-submit">联系投稿 →</a>
+      </div>
+      <div class="wq-split">
+        <div>
+          <h3 style="font-size:18px;margin-bottom:6px;">企业动态</h3>
+          <div class="wq-dyn">
+            <article class="wq-dyn-item">
+              <span class="wq-dyn-date">11-21</span>
+              <div>
+                <h3>《旧物开箱第二季》正式上线</h3>
+                <p>本季新增拆解手册下载，专题页同步开放社区补充入口，欢迎提交你的保养经验。</p>
+              </div>
+            </article>
+            <article class="wq-dyn-item">
+              <span class="wq-dyn-date">11-19</span>
+              <div>
+                <h3>玩物套路挑战赛报名开启</h3>
+                <p>赛程、评审规则与投稿格式已在活动页公布，报名截止 12-06，欢迎原创作品参与。</p>
+              </div>
+            </article>
+            <article class="wq-dyn-item">
+              <span class="wq-dyn-date">11-16</span>
+              <div>
+                <h3>创作者后台支持 4K 批量上传</h3>
+                <p>新增断点续传与素材归档功能，上传规范与母版要求已同步更新至帮助中心。</p>
+              </div>
+            </article>
+            <article class="wq-dyn-item">
+              <span class="wq-dyn-date">11-10</span>
+              <div>
+                <h3>社区评价体系优化说明</h3>
+                <p>口碑榜改为按季度统计，新增内容准确性与社区回访两项指标，规则全文已公开。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:18px;margin-bottom:6px;">常见问题</h3>
+          <div class="wq-faq" id="wqFaqList">
+            <details>
+              <summary>玩物社区套路的内容是官方原创吗？</summary>
+              <p>标注「套路拆解」的内容均由认证创作者或本站编辑部原创制作，页面会显示作者信息与更新时间。转载需获得授权，具体规则见投稿规范。</p>
+            </details>
+            <details>
+              <summary>如何成为认证创作者？</summary>
+              <p>通过投稿入口提交至少三支原创作品，并附完整创作说明。编辑部会在五个工作日内反馈，重点考察内容真实性与方法可复现性。</p>
+            </details>
+            <details>
+              <summary>投稿对画质有什么要求？</summary>
+              <p>建议提交 1080P 及以上、码率稳定的成片，重点内容支持 4K 母版。声音清晰、字幕准确会显著影响推荐结果。</p>
+            </details>
+            <details>
+              <summary>视频下方的点赞和收藏会保存吗？</summary>
+              <p>在本页内点赞与收藏状态会即时反馈并保留，刷新后恢复初始状态，用于演示交互。正式站点会与账号绑定。</p>
+            </details>
+            <details>
+              <summary>专题企划多久更新一次？</summary>
+              <p>专题按季推进，常规更新周期为两到三周一条。遇到活动或挑战赛会临时加密更新，具体以专题页状态标识为准。</p>
+            </details>
+            <details>
+              <summary>发现内容表述不准确怎么办？</summary>
+              <p>可通过每支视频下方的反馈入口提交说明，编辑部会核对并在必要时补充更正说明，感谢你的严谨。</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- M11 合作墙 + M13 投稿 CTA -->
+  <section class="wq-section" id="wq-submit" aria-labelledby="wq-submit-title">
+    <div class="wq-wrap">
+      <div class="wq-cta">
+        <div>
+          <p class="wq-sec-kicker">Submit · 投稿与共建</p>
+          <h2 id="wq-submit-title">把你的玩物社区套路交给更多人验证</h2>
+          <p>我们期待具体、可复现、愿意展示失败过程的作品。提交后编辑部会给出逐条修改意见，通过审核即可进入精品内容库。</p>
+        </div>
+        <div class="wq-cta-actions">
+          <button class="wq-btn wq-btn-primary" type="button" data-wq-open="submit">提交作品</button>
+          <button class="wq-btn wq-btn-ghost" type="button" data-wq-open="share">分享本页</button>
+        </div>
+      </div>
+
+      <div class="wq-sec-head" style="margin-top:42px;">
+        <div>
+          <p class="wq-sec-kicker">Partners · 合作品牌</p>
+          <h2>长期合作的品牌与机构</h2>
+          <p>合作以内容共建与方法交流为主，不参与内容评审的独立判断。</p>
+        </div>
+      </div>
+      <div class="wq-partners">
+        <div class="wq-partner"><b>拾光工具</b><span>手作工具合作</span></div>
+        <div class="wq-partner"><b>木纹计划</b><span>材料机构共建</span></div>
+        <div class="wq-partner"><b>灯下小记</b><span>内容联合企划</span></div>
+        <div class="wq-partner"><b>城市影像馆</b><span>线下展映合作</span></div>
+        <div class="wq-partner"><b>纸盒工坊</b><span>新手课程共建</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wq-footer">
+  <div class="wq-wrap">
+    <div class="wq-footer-grid">
+      <div>
+        <div class="wq-footer-brandline">
+          <span class="wq-brand-mark" aria-hidden="true">玩</span>
+          <div>
+            <div class="wq-brand-name">玩物社区</div>
+            <div class="wq-brand-sub">Official Video Brand</div>
+          </div>
+        </div>
+        <p>玩物社区官方网站，深耕兴趣玩物垂直领域的视频内容品牌。以原创、正版、高清为底线，持续运营值得信赖的内容生态，为用户与创作者提供真实的交流空间。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#wq-analyze">品牌解析</a></li>
+          <li><a href="#wq-focus">焦点内容</a></li>
+          <li><a href="#wq-videos">视频频道</a></li>
+          <li><a href="#wq-topics">专题企划</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>社区与参与</h4>
+        <ul>
+          <li><a href="#wq-authors">创作者矩阵</a></li>
+          <li><a href="#wq-rank">数据榜单</a></li>
+          <li><a href="#wq-comments">社区口碑</a></li>
+          <li><a href="#wq-submit">投稿入口</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>官方信息</h4>
+        <ul>
+          <li><a href="#wq-faq">企业动态</a></li>
+          <li><a href="#wq-faq">常见问题</a></li>
+          <li><a href="#wq-top">回到顶部</a></li>
+          <li><a href="#wq-main">主要内容</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wq-footer-bottom">
+      <span>© 2026 玩物社区 官方网站 · 版权所有 · 持续运营中</span>
+      <span>备案号：示例备案 000000000 号 · 原创正版内容平台</span>
+    </div>
+  </div>
+</footer>
+
+<div class="wq-toast" id="wqToast" role="status" aria-live="polite"></div>
+<button class="wq-top-btn" id="wqTopBtn" type="button" aria-label="回到顶部">↑</button>
+
+<div class="wq-modal" id="wqModal" aria-hidden="true">
+  <div class="wq-modal-card" role="dialog" aria-modal="true" aria-labelledby="wqModalTitle">
+    <button class="wq-modal-close" type="button" id="wqModalClose" aria-label="关闭弹窗">×</button>
+    <h3 id="wqModalTitle">标题</h3>
+    <p class="wq-modal-sub" id="wqModalSub">说明</p>
+    <div id="wqModalBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var toast = document.getElementById("wqToast");
+  var toastTimer = null;
+  function showToast(msg){
+    if(!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("is-on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove("is-on"); }, 2200);
+  }
+
+  /* 移动端导航 */
+  var burger = document.getElementById("wqBurger");
+  var mobilePanel = document.getElementById("wqMobilePanel");
+  if(burger && mobilePanel){
+    burger.addEventListener("click", function(){
+      var open = mobilePanel.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.textContent = open ? "× 关闭" : "☰ 菜单";
+    });
+    mobilePanel.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){
+        mobilePanel.classList.remove("is-open");
+        burger.setAttribute("aria-expanded","false");
+        burger.textContent = "☰ 菜单";
+      });
+    });
+  }
+
+  /* 搜索反馈 */
+  var searchMsg = document.getElementById("wqSearchMsg");
+  var searchInput = document.getElementById("wqSearchInput");
+  var searchBtn = document.getElementById("wqSearchBtn");
+  var mobileSearch = document.getElementById("wqMobileSearch");
+  var mobileSearchBtn = document.getElementById("wqMobileSearchBtn");
+
+  function runSearch(q){
+    q = (q || "").trim();
+    if(!q){
+      if(searchMsg){
+        searchMsg.textContent = "请输入关键词，例如「套路」「收纳」「二手」或创作者昵称。";
+        searchMsg.classList.add("is-on");
+      }
+      showToast("请先输入搜索关键词");
+      return;
+    }
+    var titles = Array.prototype.slice.call(document.querySelectorAll("#wqVideoList h3"));
+    var hit = titles.filter(function(h){ return h.textContent.indexOf(q) !== -1; });
+    if(searchMsg){
+      searchMsg.classList.add("is-on");
+      if(hit.length){
+        searchMsg.textContent = "找到 " + hit.length + " 条与「" + q + "」相关的视频，已定位到视频频道：" + hit[0].textContent;
+      }else{
+        searchMsg.textContent = "暂未找到与「" + q + "」直接匹配的视频，建议尝试「套路」「收纳」「二手」「创作者」等关键词。";
+      }
+    }
+    var target = document.getElementById("wq-videos");
+    if(target) target.scrollIntoView({behavior:"smooth", block:"start"});
+    showToast(hit.length ? ("找到 " + hit.length + " 条相关内容") : "暂无直接匹配内容");
+  }
+
+  if(searchBtn && searchInput){
+    searchBtn.addEventListener("click", function(){ runSearch(searchInput.value); });
+    searchInput.addEventListener("keydown", function(e){
+      if(e.key === "Enter"){ e.preventDefault(); runSearch(searchInput.value); }
+    });
+  }
+  if(mobileSearchBtn && mobileSearch){
+    mobileSearchBtn.addEventListener("click", function(){ runSearch(mobileSearch.value); });
+    mobileSearch.addEventListener("keydown", function(e){
+      if(e.key === "Enter"){ e.preventDefault(); runSearch(mobileSearch.value); }
+    });
+  }
+
+  /* 点赞 */
+  document.querySelectorAll("[data-wq-like]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var base = parseInt(btn.getAttribute("data-count"), 10) || 0;
+      var liked = btn.classList.toggle("is-liked");
+      btn.setAttribute("aria-pressed", liked ? "true" : "false");
+      var num = base + (liked ? 1 : 0);
+      var span = btn.querySelector("span");
+      if(span) span.textContent = num.toLocaleString("en-US");
+      btn.firstChild.textContent = liked ? "♥ " : "♡ ";
+      showToast(liked ? "已点赞，感谢支持原创内容" : "已取消点赞");
+    });
+  });
+
+  /* 收藏 */
+  document.querySelectorAll("[data-wq-fav]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var on = btn.classList.toggle("is-fav");
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.textContent = on ? "★ 已收藏" : "☆ 收藏";
+      showToast(on ? "已加入收藏，可在本页继续浏览" : "已取消收藏");
+    });
+  });
+
+  /* 数字滚动 */
+  var counters = document.querySelectorAll("[data-wq-count]");
+  function animateCount(el){
+    var target = parseInt(el.getAttribute("data-wq-count"), 10) || 0;
+    var duration = 1100;
+    var startTime = null;
+    function step(ts){
+      if(!startTime) startTime = ts;
+      var p = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var val = Math.round(target * eased);
+      el.textContent = val.toLocaleString("en-US");
+      if(p < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString("en-US");
+    }
+    requestAnimationFrame(step);
+  }
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          animateCount(en.target);
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold:.4});
+    counters.forEach(function(c){ io.observe(c); });
+  }else{
+    counters.forEach(function(c){ c.textContent = (parseInt(c.getAttribute("data-wq-count"),10)||0).toLocaleString("en-US"); });
+  }
+
+  /* 回到顶部 */
+  var topBtn = document.getElementById("wqTopBtn");
+  window.addEventListener("scroll", function(){
+    if(!topBtn) return;
+    if(window.scrollY > 520) topBtn.classList.add("is-on");
+    else topBtn.classList.remove("is-on");
+  }, {passive:true});
+  if(topBtn){
+    topBtn.addEventListener("click", function(){
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
+
+  /* 弹窗 */
+  var modal = document.getElementById("wqModal");
+  var modalTitle = document.getElementById("wqModalTitle");
+  var modalSub = document.getElementById("wqModalSub");
+  var modalBody = document.getElementById("wqModalBody");
+  var modalClose = document.getElementById("wqModalClose");
+
+  var authorData = {
+    "木匣书房": "七年家居内容创作者，擅长桌面布置与收纳动线。作品强调可执行性，每支视频保留失败素材，累计 126 支原创作品，粉丝 8.4 万。",
+    "旧物雷达": "专注二手市场的长期观察者，以案例说明风险，内容以核验流程与话术为主，累计 88 支作品，粉丝 6.1 万。",
+    "慢速频道": "用一年四十支视频的稳定输出证明节奏可以被设计，公开选题库与排期表，累计 94 支作品，粉丝 5.7 万。",
+    "巷口观察": "走街串巷记录小店的玩法与手艺，擅长把地方经验讲成通用方法，累计 72 支作品，粉丝 4.9 万。",
+    "蓝棚手记": "从摄影棚转到家庭场景，擅长用最少设备完成稳定画面，教程常附参数表，累计 110 支作品，粉丝 7.2 万。",
+    "玩物编辑部": "玩物社区官方网站的官方内容团队，负责专题企划与创作者访谈，累计 156 支作品，粉丝 12.3 万。"
+  };
+
+  function openModal(title, sub, html){
+    if(!modal) return;
+    modalTitle.textContent = title;
+    modalSub.textContent = sub || "";
+    modalBody.innerHTML = html || "";
+    modal.classList.add("is-on");
+    modal.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+    if(modalClose) modalClose.focus();
+  }
+  function closeModal(){
+    if(!modal) return;
+    modal.classList.remove("is-on");
+    modal.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  }
+  if(modalClose) modalClose.addEventListener("click", closeModal);
+  if(modal){
+    modal.addEventListener("click", function(e){
+      if(e.target === modal) closeModal();
+    });
+  }
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") closeModal();
+  });
+
+  document.querySelectorAll("[data-wq-open]").forEach(function(el){
+    el.addEventListener("click", function(e){
+      e.preventDefault();
+      var type = el.getAttribute("data-wq-open");
+      if(type === "submit"){
+        openModal("提交作品", "请填写基本信息，编辑部会在五个工作日内反馈。", 
+          '<div class="wq-field"><label for="wqTitleInput">作品标题</label><input id="wqTitleInput" type="text" placeholder="例如：玩物社区套路 · 我的收纳动线"></div>' +
+          '<div class="wq-field"><label for="wqAuthorInput">创作者昵称</label><input id="wqAuthorInput" type="text" placeholder="请输入昵称"></div>' +
+          '<div class="wq-field"><label for="wqLinkInput">作品链接或说明</label><textarea id="wqLinkInput" rows="3" placeholder="简述作品内容、方法论与拍摄条件"></textarea></div>' +
+          '<p class="wq-modal-note">提交即表示同意原创声明，内容需为本人独立创作。</p>' +
+          '<div class="wq-modal-actions"><button class="wq-btn wq-btn-ghost" type="button" data-wq-close>取消</button><button class="wq-btn wq-btn-primary" type="button" id="wqSubmitFake">提交</button></div>'
+        );
+      }else if(type === "author"){
+        var name = el.getAttribute("data-wq-author") || "";
+        openModal(name + " · 创作者档案", "认证创作者 · 原创正版内容", 
+          '<p class="wq-modal-note" style="font-size:13.5px;line-height:1.8;">' + (authorData[name] || "该创作者的详细档案正在整理中。") + ' 擅长领域与代表作品可在视频频道查看，欢迎在评论区交流。</p>' +
+          '<div class="wq-modal-actions"><button class="wq-btn wq-btn-primary" type="button" data-wq-close>知道了</button></div>'
+        );
+      }else if(type === "share"){
+        openModal("分享本页", "把玩物社区套路推荐给同好。", 
+          '<div class="wq-share-grid"><button type="button" data-wq-share="微信">微信</button><button type="button" data-wq-share="微博">微博</button><button type="button" data-wq-share="QQ">QQ</button></div>' +
+          '<div class="wq-modal-actions"><button class="wq-btn wq-btn-ghost" type="button" id="wqCopyLink">复制页面链接</button><button class="wq-btn wq-btn-primary" type="button" data-wq-close>完成</button></div>'
+        );
+        bindModalActions();
+      }
+      bindModalActions();
+    });
+  });
+
+  function bindModalActions(){
+    modalBody.querySelectorAll("[data-wq-close]").forEach(function(b){
+      b.addEventListener("click", closeModal);
+    });
+    var fake = modalBody.querySelector("#wqSubmitFake");
+    if(fake){
+      fake.addEventListener("click", function(){
+        var t = modalBody.querySelector("#wqTitleInput");
+        if(t && !t.value.trim()){
+          showToast("请先填写作品标题");
+          t.focus();
+          return;
+        }
+        closeModal();
+        showToast("提交成功，编辑部会在五个工作日内反馈");
+      });
+    }
+    modalBody.querySelectorAll("[data-wq-share]").forEach(function(b){
+      b.addEventListener("click", function(){
+        showToast("已生成分享提示：" + b.getAttribute("data-wq-share"));
+      });
+    });
+    var copyBtn = modalBody.querySelector("#wqCopyLink");
+    if(copyBtn){
+      copyBtn.addEventListener("click", function(){
+        var url = window.location.href;
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(url).then(function(){
+            showToast("页面链接已复制");
+          }).catch(function(){
+            showToast("复制失败，请手动复制地址栏链接");
+          });
+        }else{
+          showToast("当前环境不支持自动复制，请手动复制地址栏链接");
+        }
+      });
+    }
+  }
+
+  /* 卡片悬停已由 CSS 实现；数据滚动已实现；移动导航、搜索、点赞、收藏、弹窗、复制、回到顶部已实现 */
+})();
+</script>
+</body>
+  </html>
